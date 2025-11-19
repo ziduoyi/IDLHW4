@@ -80,6 +80,9 @@ class LMTrainer(BaseTrainer):
             # TODO: Unpack batch from the dataloader
             # TODO: Move the batch elements to self.device
             targets_shifted, targets_golden, lengths = batch
+            targets_shifted = targets_shifted.to(self.device)
+            targets_golden = targets_golden.to(self.device)
+            lengths = lengths.to(self.device)
         
 
             with torch.autocast(device_type=self.device, dtype=torch.float16):
@@ -174,6 +177,9 @@ class LMTrainer(BaseTrainer):
             # TODO: Unpack batch
             # TODO: Move the batch elements to self.device
             targets_shifted, targets_golden, lengths = batch
+            targets_shifted = targets_shifted.to(self.device)
+            targets_golden = targets_golden.to(self.device)
+            lengths = lengths.to(self.device)
 
             # Forward pass
             with torch.inference_mode():
