@@ -84,8 +84,7 @@ class LMTrainer(BaseTrainer):
             targets_golden = targets_golden.to(self.device)
             lengths = lengths.to(self.device)
         
-            str = "cuda" if self.device.type == "cuda" else "cpu"
-            with torch.autocast(device_type=str, dtype=torch.float16):
+            with torch.autocast(device_type=self.device, dtype=torch.float16):
 
                 # TODO: Get raw logits and attention weights from model
                 raw_preds, attn_weights = self.model(targets_shifted, target_lengths=lengths)
