@@ -26,8 +26,9 @@ def PadMask(padded_input, input_lengths):
             - non-padding positions are marked with False.
     """
     # TODO: Implement PadMask
-    times = torch.arange(padded_input.size(1), device=padded_input.device).unsqueeze(0).expand(len(input_lengths), -1)
-    return times >= input_lengths.unsqueeze(1)
+    tensor = torch.arange(padded_input.shape[1], device=padded_input.device).unsqueeze(0)
+    input_lengths = input_lengths.unsqueeze(1)
+    return tensor>=input_lengths
 
 ''' 
 TODO: Implement this function.
