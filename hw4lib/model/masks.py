@@ -27,7 +27,7 @@ def PadMask(padded_input, input_lengths):
     """
     # TODO: Implement PadMask
     tensor = torch.arange(padded_input.shape[1], device=padded_input.device).unsqueeze(0)
-    input_lengths = input_lengths.unsqueeze(1)
+    input_lengths = input_lengths.to(padded_input.device).unsqueeze(1)
     return tensor>=input_lengths
 
 ''' 
